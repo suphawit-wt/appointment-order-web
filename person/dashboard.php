@@ -36,7 +36,7 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
     <title>Appointment Order</title>
 
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
-    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/css/style.min.css" rel="stylesheet">
     <link href="/assets/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
 
     <script>

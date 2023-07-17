@@ -28,7 +28,7 @@ $dep_list = $result->fetch_all(MYSQLI_ASSOC);
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Appointment Order</title>
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
-    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/css/style.min.css" rel="stylesheet">
     <script src="/assets/js/validation.js"></script>
 
     <script>
