@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $doc = $result->fetch_assoc();
 
     if (empty($doc)) {
-        echo "<script type='text/javascript'>alert('*คุณไม่มีสิทธิ์ในการเข้าถึงข้อมูลนี้');history.go(-1);</script>";
+        echo "<script type='text/javascript'>alert('*Forbidden, You doesn't have permission.');history.go(-1);</script>";
     }
 
     $today = date("Y-m-d");

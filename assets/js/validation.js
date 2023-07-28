@@ -21,19 +21,19 @@ function validateUserName(usrname, min, max) {
 
     if (usrname.value == "") {
         usrname.style.borderColor = "red";
-        error = "กรุณากรอก Username \n";
+        error = "*Please enter username. \n";
         alert(error);
         usrname.focus();
         return false;
     } else if ((usrname.value.length < min) || (usrname.value.length > max)) {
         usrname.style.borderColor = "red";
-        error = "User ID ต้องมีความยาว " + min + "-" + max + " ตัวอักษร\n";
+        error = "*Username must be in length " + min + "-" + max + " character. \n";
         alert(error);
         usrname.focus();
         return false;
     } else if (illegalChars.test(usrname.value)) {
         usrname.style.borderColor = "red";
-        error = "User ID มีตัวอักษรที่ไม่ได้รับอนุญาติ\n";
+        error = "*Username must not have special character. \n";
         alert(error);
         usrname.focus();
         return false;
@@ -49,30 +49,30 @@ function validatePassword(pwd, uconfirmpwd, min, max) {
 
     if (pwd.value == "") {
         pwd.style.borderColor = "red";
-        error = "กรุณาป้อน Password\n";
+        error = "*Please enter password. \n";
         alert(error);
         pwd.focus();
         return false;
     } else if ((pwd.value.length < min) || (pwd.value.length > max)) {
-        error = "Password ต้องมีความยาว " + min + "-" + max + " ตัวอักษร\n";
+        error = "*Password must be in length " + min + "-" + max + " character. \n";
         pwd.style.borderColor = "red";
         alert(error);
         pwd.focus();
         return false;
     } else if (illegalChars.test(pwd.value)) {
-        error = "Password มีตัวอักษรที่ไม่ได้รับอนุญาติ\n";
+        error = "*Password must not have special character. \n";
         pwd.style.borderColor = "red";
         alert(error);
         pwd.focus();
         return false;
     } else if ((pwd.value.search(/[a-zA-Z]+/) == -1) || (pwd.value.search(/[0-9]+/) == -1)) {
-        error = "Password ต้องมีทั้งตัวเลขและตัวอักษร\n";
+        error = "*Password must have Alphabet and Number. \n";
         pwd.style.borderColor = "red";
         alert(error);
         pwd.focus();
         return false;
     } else if (pwd.value != uconfirmpwd.value) {
-        error = "Password ไม่ตรงกัน\n";
+        error = "*Password and Confirm Password must be match. \n";
         pwd.style.borderColor = "red";
         uconfirmpwd.style.borderColor = "red";
         alert(error);
@@ -89,14 +89,14 @@ function validateName(name) {
     var letters = /^[A-Za-zก-๏ ]+$/;
     if (name.value == "") {
         name.style.borderColor = "red";
-        error = "กรุณากรอก ชื่อ-นามสกุล\n";
+        error = "*Please enter full name. \n";
         alert(error);
         name.focus();
         return false;
     } else if (name.value.match(letters)) {
         return true;
     } else {
-        alert('ชื่อ-นามสกุล ต้องเป็นตัวอักษรเท่านั้น');
+        alert('*Full Name must have only Alphabet.');
         name.focus();
         return false;
     }

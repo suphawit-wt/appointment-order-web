@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $user = $result->fetch_assoc();
 ?>
     <?php if (!empty($user)) : ?>
-        <span class="text-danger">*Username นี้ได้ใช้ไปแล้ว!</span>
+        <span class="text-danger">*Username "<?php echo $user['username'] ?>" is already in use!</span>
     <?php endif; ?>
 <?php
 } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $passwd = md5($_POST['password']);
 
     if (empty($username) || empty($_POST['password'])) {
-        echo "<script type='text/javascript'>alert('*กรุณากรอกข้อมูลให้ครบถ้วน!');history.go(-1);</script>";
+        echo "<script type='text/javascript'>alert('*Username and Password field is required.');history.go(-1);</script>";
     } else {
         $sql = "SELECT u.*, ps_name, dep_name
                 FROM users u
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             header("location: /login.php");
             exit(0);
         } else {
-            echo "<script type='text/javascript'>alert('*Username หรือ Password ไม่ถูกต้อง!');history.go(-1);</script>";
+            echo "<script type='text/javascript'>alert('*Username or Password is invalid!');history.go(-1);</script>";
         }
     }
 } else {

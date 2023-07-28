@@ -8,7 +8,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['uGroup'] === 'S') {
 }
 ?>
 <!DOCTYPE html>
-<html class="h-100" lang="th">
+<html class="h-100" lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -17,6 +17,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['uGroup'] === 'S') {
     <title>Appointment Order</title>
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
     <link href="/assets/css/style.min.css" rel="stylesheet">
+    <link href="/assets/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body class="h-100">
@@ -28,12 +29,12 @@ if (isset($_SESSION['loggedin']) && $_SESSION['uGroup'] === 'S') {
                 <div class="col-xl-6">
                     <div class="form-input-content">
                         <a href="/" class="btn btn-rounded btn-outline-primary mb-3">
-                            <span><i class="fa fa-arrow-left" aria-hidden="true"></i> กลับสู่หน้าหลัก</span>
+                            <span><i class="fa fa-arrow-left mr-1" aria-hidden="true"></i> Back to home</span>
                         </a>
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
                                 <span class="btn btn-rounded btn-info">
-                                    <i class="fa fa-user-o" aria-hidden="true"></i>&nbsp;&nbsp;เข้าสู่ระบบ
+                                    <i class="fa fa-user-o mr-1" aria-hidden="true"></i> Login
                                 </span>
                                 <form action="/users/check.php" method="post" class="mt-5 mb-5 login-input">
                                     <div class="form-group">
@@ -47,7 +48,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['uGroup'] === 'S') {
                                         </div>
                                     </div>
                                     <button type="submit" class="btn login-form__btn submit w-100">
-                                        <i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;&nbsp;เข้าสู่ระบบ
+                                        <i class="fa fa-sign-in mr-1" aria-hidden="true"></i> Login
                                     </button>
                                 </form>
                             </div>

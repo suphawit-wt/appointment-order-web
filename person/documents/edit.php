@@ -29,7 +29,7 @@ $result = $stmt->get_result();
 $doc = $result->fetch_assoc();
 
 if (empty($doc)) {
-    echo "<script type='text/javascript'>alert('*คุณไม่มีสิทธิ์ในการเข้าถึงข้อมูลนี้');history.go(-1);</script>";
+    echo "<script type='text/javascript'>alert('*Forbidden, You doesn't have permission.');history.go(-1);</script>";
 }
 
 $sql = "SELECT p.*
@@ -44,7 +44,7 @@ $result = $stmt->get_result();
 $person_list = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -55,6 +55,7 @@ $person_list = $result->fetch_all(MYSQLI_ASSOC);
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
     <link href="/assets/css/style.min.css" rel="stylesheet">
     <link href="/assets/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
+    <link href="/assets/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     <script>
         function checkStatus() {
@@ -83,12 +84,12 @@ $person_list = $result->fetch_all(MYSQLI_ASSOC);
 
                 <div class="row page-titles mx-0">
                     <a href="/person/dashboard.php" class="btn btn-rounded btn-outline-primary mb-1">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i> กลับไปยังหน้าที่แล้ว
+                        <i class="fa fa-arrow-left mr-1" aria-hidden="true"></i> Back to previous page
                     </a>
                     <div class="col p-md-0">
                         <ol class="breadcrumb">
                             <b>
-                                <span class="text-dark">ประเภทบัญชีผู้ใช้ : </span>
+                                <span class="text-dark">Role : </span>
                                 <span class="text-primary">Person</span>
                             </b>
                         </ol>
@@ -99,64 +100,64 @@ $person_list = $result->fetch_all(MYSQLI_ASSOC);
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">แก้ไขคำสั่งแต่งตั้ง</h4>
+                                <h4 class="card-title">Edit Document</h4>
                                 <form action="/person/documents/update.php?id=<?php echo $doc['id'] ?>" method="post">
                                     <div class="row">
                                         <div class="col-lg-2 col-md-3 col-sm-12">
                                             <div class="form-group">
-                                                <label class="col-md-12 col-form-label text-md-left">เลขที่คำสั่ง</label>
+                                                <label class="col-md-12 col-form-label text-md-left">No.</label>
                                                 <div class="input-group">
-                                                    <input value="<?php echo $doc['doc_num'] ?>" type="text" name="doc_num" class="form-control input-rounded" placeholder="เลขที่คำสั่ง" required>
+                                                    <input value="<?php echo $doc['doc_num'] ?>" type="text" name="doc_num" class="form-control input-rounded" placeholder="No." required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-9 col-sm-12">
                                             <div class="form-group">
-                                                <label class="col-md-12 col-form-label text-md-left">ชื่อคำสั่ง</label>
+                                                <label class="col-md-12 col-form-label text-md-left">Title</label>
                                                 <div class="input-group">
-                                                    <input value="<?php echo $doc['doc_title'] ?>" type="text" name="doc_title" class="form-control input-rounded" placeholder="ชื่อคำสั่ง" required>
+                                                    <input value="<?php echo $doc['doc_title'] ?>" type="text" name="doc_title" class="form-control input-rounded" placeholder="Title" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-2 col-md-3 col-sm-12">
                                             <div class="form-group">
-                                                <label class="col-md-12 col-form-label text-md-left">วันที่มีผลบังคับใช้</label>
+                                                <label class="col-md-12 col-form-label text-md-left">From Date</label>
                                                 <div class="input-group">
-                                                    <input value="<?php echo $doc['doc_frdate'] ?>" type="text" id="doc_from" name="doc_from" class="form-control input-rounded" placeholder="วันที่มีผลบังคับใช้" required>
+                                                    <input value="<?php echo $doc['doc_frdate'] ?>" type="text" id="doc_from" name="doc_from" class="form-control input-rounded" placeholder="From Date" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-2 col-md-3 col-sm-12">
                                             <div class="form-group">
-                                                <label class="col-md-12 col-form-label text-md-left">วันที่คำสั่งสิ้นสุด</label>
+                                                <label class="col-md-12 col-form-label text-md-left">End Date</label>
                                                 <div class="input-group">
-                                                    <input value="<?php echo $doc['doc_todate'] ?>" type="text" id="doc_to" name="doc_to" onchange="checkStatus();" class="form-control input-rounded" placeholder="วันที่คำสั่งสิ้นสุด" required>
+                                                    <input value="<?php echo $doc['doc_todate'] ?>" type="text" id="doc_to" name="doc_to" onchange="checkStatus();" class="form-control input-rounded" placeholder="End Date" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-2 col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <label class="col-md-12 col-form-label text-md-left">สถานะคำสั่ง</label>
+                                                <label class="col-md-12 col-form-label text-md-left">Status</label>
                                                 <div id="doc_status" class="input-group">
                                                     <?php if ($today > $doc['doc_todate']) : ?>
-                                                        <span class="label gradient-2 btn-rounded">หมดอายุแล้ว</span>
+                                                        <span class="label gradient-2 btn-rounded">Expired</span>
                                                     <?php else : ?>
-                                                        <span class="label gradient-1 btn-rounded">ยังไม่หมดอายุ</span>
+                                                        <span class="label gradient-1 btn-rounded">Activate</span>
                                                     <?php endif; ?>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <label class="col-md-12 col-form-label text-md-left">ชื่อไฟล์คำสั่ง</label>
+                                                <label class="col-md-12 col-form-label text-md-left">Filename</label>
                                                 <div class="input-group">
-                                                    <input value="<?php echo $doc['doc_filename'] ?>" type="text" name="doc_filename" class="form-control input-rounded" placeholder="เช่น 0001.pdf" required>
+                                                    <input value="<?php echo $doc['doc_filename'] ?>" type="text" name="doc_filename" class="form-control input-rounded" placeholder="Such as 0001.pdf" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <label class="col-md-12 col-form-label text-md-left">บุคลากรที่เกี่ยวข้อง</label>
+                                                <label class="col-md-12 col-form-label text-md-left">Committee</label>
                                                 <div class="input-group">
                                                     <select multiple="multiple" size="6" class="form-control" disabled>
                                                         <?php foreach ($person_list as $person) : ?>
@@ -172,11 +173,11 @@ $person_list = $result->fetch_all(MYSQLI_ASSOC);
                                             <div class="form-group mt-2">
                                                 <div class="input-group">
                                                     <button type="submit" class="btn btn-warning text-white">
-                                                        อัพเดท
+                                                        Update
                                                     </button>
                                                     &nbsp;&nbsp;
-                                                    <a href="/person/documents/delete.php?id=<?php echo $doc['id'] ?>" onclick="return confirm('คุณต้องการลบข้อมูลนี้ใช่หรือไม่?')" class="btn btn-sm btn-danger">
-                                                        ลบ
+                                                    <a href="/person/documents/delete.php?id=<?php echo $doc['id'] ?>" onclick="return confirm('Do you want to delete this documents?')" class="btn btn-sm btn-danger">
+                                                        Delete
                                                     </a>
                                                 </div>
                                             </div>

@@ -23,7 +23,7 @@ $result = $stmt->get_result();
 $person_list = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -33,6 +33,7 @@ $person_list = $result->fetch_all(MYSQLI_ASSOC);
     <title>Appointment Order</title>
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
     <link href="/assets/css/style.min.css" rel="stylesheet">
+    <link href="/assets/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -47,13 +48,13 @@ $person_list = $result->fetch_all(MYSQLI_ASSOC);
 
                 <div class="row page-titles mx-0">
                     <a href="/staff/dashboard.php" class="btn btn-rounded btn-outline-primary mb-1">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i> กลับไปยังหน้าที่แล้ว
+                        <i class="fa fa-arrow-left mr-1" aria-hidden="true"></i> Back to previous page
                     </a>
                     <div class="col p-md-0">
                         <ol class="breadcrumb">
                             <ul>
                                 <b>
-                                    <span class="text-dark">ประเภทบัญชีผู้ใช้ : </span>
+                                    <span class="text-dark">Role : </span>
                                     <span class="text-primary">Staff</span>
                                 </b>
                             </ul>
@@ -66,20 +67,20 @@ $person_list = $result->fetch_all(MYSQLI_ASSOC);
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    บุคลากรทั้งหมด
-                                    <a href="/staff/persons/new.php" class="btn btn-sm btn-rounded btn-info ml-2">
-                                        เพิ่มบุคลากร
+                                    Users
+                                    <a href="/staff/users/new.php" class="btn btn-sm btn-rounded btn-info ml-2">
+                                        Create new user
                                     </a>
                                 </h4>
                                 <div class="table-responsive">
                                     <table class="table header-border">
                                         <thead>
                                             <tr>
-                                                <th>บัญชีผู้ใช้</th>
-                                                <th>ชื่อผู้ใช้</th>
-                                                <th>แผนก</th>
-                                                <th>ประเภท</th>
-                                                <th>การดำเนินการ</th>
+                                                <th>Username</th>
+                                                <th>Full Name</th>
+                                                <th>Department</th>
+                                                <th>Role</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -96,12 +97,12 @@ $person_list = $result->fetch_all(MYSQLI_ASSOC);
                                                         <?php endif; ?>
                                                     </td>
                                                     <td>
-                                                        <a href="/staff/persons/edit.php?id=<?php echo $person['id'] ?>" class="btn btn-sm btn-warning text-white">
-                                                            แก้ไข
+                                                        <a href="/staff/users/edit.php?id=<?php echo $person['id'] ?>" class="btn btn-sm btn-warning text-white">
+                                                            Edit
                                                         </a>
                                                         &nbsp;
-                                                        <a href="/staff/persons/delete.php?id=<?php echo $person['id'] ?>" onclick="return confirm('คุณต้องการลบข้อมูลนี้ใช่หรือไม่?')" class="btn btn-sm btn-danger">
-                                                            ลบ
+                                                        <a href="/staff/users/delete.php?id=<?php echo $person['id'] ?>" onclick="return confirm('Do you want to delete this documents?')" class="btn btn-sm btn-danger">
+                                                            Delete
                                                         </a>
                                                     </td>
                                                 </tr>

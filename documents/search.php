@@ -17,7 +17,7 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
 $doc_count = count($doc_list);
 ?>
 <?php if ($doc_count > 0) : ?>
-    <span class="text-primary">ค้นพบ <?php echo $doc_count ?></span>
+    <span class="text-primary">Found <?php echo $doc_count ?> documents</span>
     <?php foreach ($doc_list as $doc) : ?>
         <tr>
             <td><?php echo $doc['doc_num'] ?></td>
@@ -26,9 +26,9 @@ $doc_count = count($doc_list);
             <td><?php echo $doc['doc_todate'] ?></td>
             <td>
                 <?php if ($doc['doc_exp_sts'] === 'Y') : ?>
-                    <span class="label gradient-2 rounded">หมดอายุแล้ว</span>
+                    <span class="label gradient-2 rounded">Expired</span>
                 <?php elseif ($doc['doc_exp_sts'] === 'N') : ?>
-                    <span class="label gradient-1 rounded">ยังไม่หมดอายุ</span>
+                    <span class="label gradient-1 rounded">Activate</span>
                 <?php endif; ?>
             </td>
             <td>
@@ -39,5 +39,5 @@ $doc_count = count($doc_list);
         </tr>
     <?php endforeach; ?>
 <?php else : ?>
-    <span class="text-danger">*ไม่พบคำสั่งแต่งตั้ง</span>
+    <span class="text-danger">*Document not found</span>
 <?php endif; ?>

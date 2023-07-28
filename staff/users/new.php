@@ -19,7 +19,7 @@ $result = $stmt->get_result();
 $dep_list = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -29,6 +29,7 @@ $dep_list = $result->fetch_all(MYSQLI_ASSOC);
     <title>Appointment Order</title>
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
     <link href="/assets/css/style.min.css" rel="stylesheet">
+    <link href="/assets/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <script src="/assets/js/validation.js"></script>
 
     <script>
@@ -57,14 +58,14 @@ $dep_list = $result->fetch_all(MYSQLI_ASSOC);
             <div class="container-fluid">
 
                 <div class="row page-titles mx-0">
-                    <a href="/staff/persons/manage.php" class="btn btn-rounded btn-outline-primary mb-1">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i> กลับไปยังหน้าที่แล้ว
+                    <a href="/staff/users/manage.php" class="btn btn-rounded btn-outline-primary mb-1">
+                        <i class="fa fa-arrow-left mr-1" aria-hidden="true"></i> Back to previous page
                     </a>
                     <div class="col p-md-0">
                         <ol class="breadcrumb">
                             <ul>
                                 <b>
-                                    <span class="text-dark">ประเภทบัญชีผู้ใช้ : </span>
+                                    <span class="text-dark">Role : </span>
                                     <span class="text-primary">Staff</span>
                                 </b>
                             </ul>
@@ -76,8 +77,8 @@ $dep_list = $result->fetch_all(MYSQLI_ASSOC);
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">เพิ่มบุคลากร</h4>
-                                <form action="/staff/persons/create.php" method="post" name="person_form" onSubmit="return formValidation();">
+                                <h4 class="card-title">Create new user</h4>
+                                <form action="/staff/users/create.php" method="post" name="person_form" onSubmit="return formValidation();">
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 col-sm-12">
                                             <div class="form-group">
@@ -106,7 +107,7 @@ $dep_list = $result->fetch_all(MYSQLI_ASSOC);
                                         </div>
                                         <div class="col-lg-4 col-md-5 col-sm-12">
                                             <div class="form-group">
-                                                <label class="col-md-12 col-form-label text-md-left">ชื่อ-นามสกุล</label>
+                                                <label class="col-md-12 col-form-label text-md-left">Full Name</label>
                                                 <div class="input-group">
                                                     <input type="text" id="fullname" name="fullname" class="form-control input-rounded">
                                                 </div>
@@ -114,7 +115,7 @@ $dep_list = $result->fetch_all(MYSQLI_ASSOC);
                                         </div>
                                         <div class="col-lg-3 col-md-4 col-sm-12">
                                             <div class="form-group">
-                                                <label class="col-md-12 col-form-label text-md-left">แผนก</label>
+                                                <label class="col-md-12 col-form-label text-md-left">Department</label>
                                                 <div class="input-group">
                                                     <select class="form-control input-rounded" name="department_id">
                                                         <?php foreach ($dep_list as $dep) : ?>
@@ -126,7 +127,7 @@ $dep_list = $result->fetch_all(MYSQLI_ASSOC);
                                         </div>
                                         <div class="col-lg-2 col-md-3 col-sm-12">
                                             <div class="form-group">
-                                                <label class="col-md-12 col-form-label text-md-left">ประเภทบัญชี</label>
+                                                <label class="col-md-12 col-form-label text-md-left">Role</label>
                                                 <label class="radio-inline mr-3">
                                                     <input type="radio" name="user_group" value="P"> Person</label>
                                                 <label class="radio-inline mr-3">
@@ -139,7 +140,7 @@ $dep_list = $result->fetch_all(MYSQLI_ASSOC);
                                             <div class="form-group mt-2">
                                                 <div class="input-group">
                                                     <button type="submit" class="btn btn-info text-white">
-                                                        เพิ่มบุคลากร
+                                                        Create
                                                     </button>
                                                 </div>
                                             </div>

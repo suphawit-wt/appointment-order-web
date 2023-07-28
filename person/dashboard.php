@@ -26,7 +26,7 @@ $result = $stmt->get_result();
 $doc_list = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -38,6 +38,7 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
     <link href="/assets/css/style.min.css" rel="stylesheet">
     <link href="/assets/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
+    <link href="/assets/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     <script>
         function search() {
@@ -73,12 +74,12 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
 
                 <div class="row page-titles mx-0">
                     <a href="/" class="btn btn-rounded btn-outline-primary mb-1">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i> กลับสู่หน้าหลัก
+                        <i class="fa fa-arrow-left mr-1" aria-hidden="true"></i> Back to home
                     </a>
                     <div class="col p-md-0">
                         <ol class="breadcrumb">
                             <b>
-                                <span class="text-dark">ประเภทบัญชีผู้ใช้ : </span>
+                                <span class="text-dark">Role : </span>
                                 <span class="text-primary">Person</span>
                             </b>
                         </ol>
@@ -89,14 +90,14 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">ค้นหาคำสั่งที่ตนเองเป็นคณะกรรมการ</h4>
+                                <h4 class="card-title">Search documents that you are committee.</h4>
                                 <div class="default-tab">
                                     <ul class="nav nav-tabs mb-3" role="tablist">
-                                        <li class="nav-item"><a onclick="clearSearch();" class="nav-link active show" data-toggle="tab" href="#tab1">เลขที่คำสั่ง</a>
+                                        <li class="nav-item"><a onclick="clearSearch();" class="nav-link active show" data-toggle="tab" href="#tab1">Search by No.</a>
                                         </li>
-                                        <li class="nav-item"><a onclick="clearSearch();" class="nav-link" data-toggle="tab" href="#tab2">ชื่อคำสั่ง</a>
+                                        <li class="nav-item"><a onclick="clearSearch();" class="nav-link" data-toggle="tab" href="#tab2">Search by Title</a>
                                         </li>
-                                        <li class="nav-item"><a onclick="clearSearch();" class="nav-link" data-toggle="tab" href="#tab3">ช่วงวันที่มีผลบังคับใช้</a>
+                                        <li class="nav-item"><a onclick="clearSearch();" class="nav-link" data-toggle="tab" href="#tab3">Search by Range of End Date</a>
                                         </li>
                                     </ul>
                                     <form id="searchSection">
@@ -104,27 +105,27 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
                                             <div class="tab-pane fade active show" id="tab1" role="tabpanel">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input type="text" id="doc_num" onkeyup="search();" class="form-control input-rounded" placeholder="ค้นหาด้วยเลขที่คำสั่ง" value="">
+                                                        <input type="text" id="doc_num" onkeyup="search();" class="form-control input-rounded" placeholder="Enter the number you want to search." value="">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="tab2">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input type="text" id="doc_title" onkeyup="search();" class="form-control input-rounded" placeholder="ค้นหาด้วยชื่อคำสั่ง" value="">
+                                                        <input type="text" id="doc_title" onkeyup="search();" class="form-control input-rounded" placeholder="Enter the title you want to search." value="">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="tab3">
-                                                <label>จากวันที่</label>
+                                                <label>From Date</label>
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input type="text" id="doc_from" onchange="search();" class="form-control input-rounded" placeholder="ค้นหาด้วยช่วงของวันที่มีผลบังคับใช้" value="">
+                                                        <input type="text" id="doc_from" onchange="search();" class="form-control input-rounded" placeholder="Enter the range of end date you want to search." value="">
                                                     </div>
                                                     </br>
-                                                    <label>ถึงวันที่</label>
+                                                    <label>To Date</label>
                                                     <div class="input-group">
-                                                        <input type="text" id="doc_to" onchange="search();" class="form-control input-rounded" placeholder="ค้นหาด้วยช่วงของวันที่มีผลบังคับใช้" value="">
+                                                        <input type="text" id="doc_to" onchange="search();" class="form-control input-rounded" placeholder="Enter the range of end date you want to search." value="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,22 +142,22 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    คำสั่งแต่งตั้ง (ที่ตนเองเป็นคณะกรรมการ)
+                                    Documents (that you are committee.)
                                     <a href="/person/documents/new.php" class="btn btn-sm btn-rounded btn-info ml-2">
-                                        เพิ่มคำสั่งแต่งตั้ง
+                                        Create new document
                                     </a>
                                 </h4>
                                 <div class="table-responsive">
                                     <table class="table header-border">
                                         <thead>
                                             <tr>
-                                                <th>เลขที่คำสั่ง</th>
-                                                <th>ชื่อคำสั่ง</th>
-                                                <th>วันที่มีผลบังคับใช้</th>
-                                                <th>วันที่คำสั่งสิ้นสุด</th>
-                                                <th>สถานะ</th>
-                                                <th>ไฟล์คำสั่ง</th>
-                                                <th>การดำเนินการ</th>
+                                                <th>No.</th>
+                                                <th>Title</th>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th>Status</th>
+                                                <th>File</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody id="display_doc">
@@ -168,9 +169,9 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
                                                     <td><?php echo $doc['doc_todate'] ?></td>
                                                     <td>
                                                         <?php if ($doc['doc_exp_sts'] === 'Y') : ?>
-                                                            <span class="label gradient-2 rounded">หมดอายุแล้ว</span>
+                                                            <span class="label gradient-2 rounded">Expired</span>
                                                         <?php elseif ($doc['doc_exp_sts'] === 'N') : ?>
-                                                            <span class="label gradient-1 rounded">ยังไม่หมดอายุ</span>
+                                                            <span class="label gradient-1 rounded">Activate</span>
                                                         <?php endif; ?>
                                                     </td>
                                                     <td>
@@ -180,11 +181,11 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
                                                     </td>
                                                     <td>
                                                         <a href="/person/documents/edit.php?id=<?php echo $doc['id'] ?>" class="btn btn-sm btn-warning text-white">
-                                                            แก้ไข
+                                                            Edit
                                                         </a>
                                                         &nbsp;
-                                                        <a href="/person/documents/delete.php?id=<?php echo $doc['id'] ?>" onclick="return confirm('คุณต้องการลบข้อมูลนี้ใช่หรือไม่?')" class="btn btn-sm btn-danger">
-                                                            ลบ
+                                                        <a href="/person/documents/delete.php?id=<?php echo $doc['id'] ?>" onclick="return confirm('Do you want to delete this documents?')" class="btn btn-sm btn-danger">
+                                                            Delete
                                                         </a>
                                                     </td>
                                                 </tr>

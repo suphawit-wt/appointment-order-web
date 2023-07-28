@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $doc = $result->fetch_assoc();
 ?>
     <?php if (!empty($doc)) : ?>
-        <span class="text-danger">*เลขที่คำสั่งนี้ถูกใช้แล้ว!</span>
+        <span class="text-danger">*This No. "<?php echo $doc['doc_num'] ?>" is already in use!</span>
     <?php endif; ?>
 <?php
 } else {

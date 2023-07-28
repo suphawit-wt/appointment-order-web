@@ -11,7 +11,7 @@ $result = $stmt->get_result();
 $doc_list = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -20,6 +20,7 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
     <title>Appointment Order</title>
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
     <link href="/assets/css/style.min.css" rel="stylesheet" />
+    <link href="/assets/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     <script>
         function search() {
@@ -50,10 +51,10 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">ค้นหาคำสั่งแต่งตั้งด้วยชื่อคำสั่ง</h4>
+                                <h4 class="card-title">Search by Title</h4>
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input type="text" id="doc_title" onkeyup="search();" class="form-control input-rounded" placeholder="ป้อนชื่อของคำสั่งแต่งตั้งที่ต้องการค้นหา" />
+                                        <input type="text" id="doc_title" onkeyup="search();" class="form-control input-rounded" placeholder="Enter the title you want to search." />
                                     </div>
                                 </div>
                             </div>
@@ -65,17 +66,17 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">คำสั่งแต่งตั้ง (ล่าสุด 10 คำสั่ง)</h4>
+                                <h4 class="card-title">Documents (Last 10 documents)</h4>
                                 <div class="table-responsive">
                                     <table class="table header-border">
                                         <thead>
                                             <tr>
-                                                <th>เลขที่คำสั่ง</th>
-                                                <th>ชื่อคำสั่ง</th>
-                                                <th>วันที่มีผลบังคับใช้</th>
-                                                <th>วันที่คำสั่งสิ้นสุด</th>
-                                                <th>สถานะ</th>
-                                                <th>ไฟล์คำสั่ง</th>
+                                                <th>No.</th>
+                                                <th>Title</th>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th>Status</th>
+                                                <th>File</th>
                                             </tr>
                                         </thead>
                                         <tbody id="display_doc">
@@ -87,9 +88,9 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
                                                     <td><?php echo $doc['doc_todate'] ?></td>
                                                     <td>
                                                         <?php if ($doc['doc_exp_sts'] === 'Y') : ?>
-                                                            <span class="label gradient-2 rounded">หมดอายุแล้ว</span>
+                                                            <span class="label gradient-2 rounded">Expired</span>
                                                         <?php elseif ($doc['doc_exp_sts'] === 'N') : ?>
-                                                            <span class="label gradient-1 rounded">ยังไม่หมดอายุ</span>
+                                                            <span class="label gradient-1 rounded">Activate</span>
                                                         <?php endif; ?>
                                                     </td>
                                                     <td>

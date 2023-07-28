@@ -22,7 +22,7 @@ $result = $stmt->get_result();
 $doc_list = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -32,6 +32,7 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
     <title>Appointment Order</title>
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
     <link href="/assets/css/style.min.css" rel="stylesheet">
+    <link href="/assets/icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     <script>
         function search() {
@@ -60,18 +61,18 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
 
                 <div class="row page-titles mx-0">
                     <a href="/" class="btn btn-rounded btn-outline-primary mb-1">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i> กลับสู่หน้าหลัก
+                        <i class="fa fa-arrow-left mr-1" aria-hidden="true"></i> Back to home
                     </a>
                     <div class="col p-md-0">
                         <ol class="breadcrumb">
                             <ul class="mr-2">
-                                <a href="/staff/persons/manage.php" class="btn btn-sm btn-rounded btn-info text-white">
-                                    จัดการข้อมูลบุคลากร
+                                <a href="/staff/users/manage.php" class="btn btn-sm btn-rounded btn-info text-white">
+                                    Manage Users
                                 </a>
                             </ul>
                             <ul>
                                 <b>
-                                    <span class="text-dark">ประเภทบัญชีผู้ใช้ : </span>
+                                    <span class="text-dark">Role : </span>
                                     <span class="text-primary">Staff</span>
                                 </b>
                             </ul>
@@ -83,10 +84,10 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">ค้นหาคำสั่งแต่งตั้งด้วยเลขที่คำสั่ง</h4>
+                                <h4 class="card-title">Search by No.</h4>
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <input type="text" id="doc_num" onkeyup="search();" class="form-control input-rounded" placeholder="ป้อนเลขที่ของคำสั่งแต่งตั้งที่ต้องการค้นหา">
+                                        <input type="text" id="doc_num" onkeyup="search();" class="form-control input-rounded" placeholder="Enter the number you want to search.">
                                     </div>
                                 </div>
                             </div>
@@ -99,22 +100,22 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">
-                                    คำสั่งแต่งตั้ง (ล่าสุด 30 คำสั่ง)
+                                    Documents (Last 30 documents)
                                     <a href="/staff/documents/new.php" class="btn btn-sm btn-rounded btn-info ml-2">
-                                        เพิ่มคำสั่งแต่งตั้ง
+                                        Create new document
                                     </a>
                                 </h4>
                                 <div class="table-responsive">
                                     <table class="table header-border">
                                         <thead>
                                             <tr>
-                                                <th>เลขที่คำสั่ง</th>
-                                                <th>ชื่อคำสั่ง</th>
-                                                <th>วันที่มีผลบังคับใช้</th>
-                                                <th>วันที่คำสั่งสิ้นสุด</th>
-                                                <th>สถานะ</th>
-                                                <th>ไฟล์คำสั่ง</th>
-                                                <th>การดำเนินการ</th>
+                                                <th>No.</th>
+                                                <th>Title</th>
+                                                <th>From Date</th>
+                                                <th>End Date</th>
+                                                <th>Status</th>
+                                                <th>File</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody id="display_doc">
@@ -126,9 +127,9 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
                                                     <td><?php echo $doc['doc_todate'] ?></td>
                                                     <td>
                                                         <?php if ($doc['doc_exp_sts'] === 'Y') : ?>
-                                                            <span class="label gradient-2 rounded">หมดอายุแล้ว</span>
+                                                            <span class="label gradient-2 rounded">Expired</span>
                                                         <?php elseif ($doc['doc_exp_sts'] === 'N') : ?>
-                                                            <span class="label gradient-1 rounded">ยังไม่หมดอายุ</span>
+                                                            <span class="label gradient-1 rounded">Activate</span>
                                                         <?php endif; ?>
                                                     </td>
                                                     <td>
@@ -138,11 +139,11 @@ $doc_list = $result->fetch_all(MYSQLI_ASSOC);
                                                     </td>
                                                     <td>
                                                         <a href="/staff/documents/edit.php?id=<?php echo $doc['id'] ?>" class="btn btn-sm btn-warning text-white">
-                                                            แก้ไข
+                                                            Edit
                                                         </a>
                                                         &nbsp;
-                                                        <a href="/staff/documents/delete.php?id=<?php echo $doc['id'] ?>" onclick="return confirm('คุณต้องการลบข้อมูลนี้ใช่หรือไม่?')" class="btn btn-sm btn-danger">
-                                                            ลบ
+                                                        <a href="/staff/documents/delete.php?id=<?php echo $doc['id'] ?>" onclick="return confirm('Do you want to delete this documents?')" class="btn btn-sm btn-danger">
+                                                            Delete
                                                         </a>
                                                     </td>
                                                 </tr>

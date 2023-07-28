@@ -31,7 +31,7 @@ if ($_GET['num'] != '') {
 }
 ?>
 <?php if ($doc_count > 0) : ?>
-    <span class="text-primary">ค้นพบ <?php echo $doc_count ?></span>
+    <span class="text-primary">Found <?php echo $doc_count ?> documents</span>
     <?php foreach ($doc_list as $doc) : ?>
         <tr>
             <td><?php echo $doc['doc_num'] ?></td>
@@ -40,9 +40,9 @@ if ($_GET['num'] != '') {
             <td><?php echo $doc['doc_todate'] ?></td>
             <td>
                 <?php if ($doc['doc_exp_sts'] === 'Y') : ?>
-                    <span class="label gradient-2 rounded">หมดอายุแล้ว</span>
+                    <span class="label gradient-2 rounded">Expired</span>
                 <?php elseif ($doc['doc_exp_sts'] === 'N') : ?>
-                    <span class="label gradient-1 rounded">ยังไม่หมดอายุ</span>
+                    <span class="label gradient-1 rounded">Activate</span>
                 <?php endif; ?>
             </td>
             <td>
@@ -52,15 +52,15 @@ if ($_GET['num'] != '') {
             </td>
             <td>
                 <a href="/staff/documents/edit.php?id=<?php echo $doc['id'] ?>" class="btn btn-sm btn-warning text-white">
-                    แก้ไข
+                    Edit
                 </a>
                 &nbsp;
-                <a href="/staff/documents/delete.php?id=<?php echo $doc['id'] ?>" onclick="return confirm('คุณต้องการลบข้อมูลนี้ใช่หรือไม่?')" class="btn btn-sm btn-danger">
-                    ลบ
+                <a href="/staff/documents/delete.php?id=<?php echo $doc['id'] ?>" onclick="return confirm('Do you want to delete this documents?')" class="btn btn-sm btn-danger">
+                    Delete
                 </a>
             </td>
         </tr>
     <?php endforeach; ?>
 <?php else : ?>
-    <span class="text-danger">*ไม่พบคำสั่งแต่งตั้ง</span>
+    <span class="text-danger">*Document not found</span>
 <?php endif; ?>

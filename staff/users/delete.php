@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $stmt->bind_param("s", $person_id);
     $stmt->execute();
 
-    header("location: /staff/persons/manage.php");
+    header("location: /staff/users/manage.php");
 } else {
     header("location: /");
 }

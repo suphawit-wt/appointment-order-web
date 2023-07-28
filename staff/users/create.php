@@ -30,9 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("ssss", $username, $password, $user_group, $lastPersonID);
         $stmt->execute();
 
-        header("location: /staff/persons/manage.php");
+        header("location: /staff/users/manage.php");
     } else {
-        echo "<script type='text/javascript'>alert('*Username $username ได้ถูกใช้แล้ว');history.go(-1);</script>";
+        echo "<script type='text/javascript'>alert('*Username $username already in use!');history.go(-1);</script>";
     }
 } else {
     header("location: /");

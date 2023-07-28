@@ -16,19 +16,23 @@
                 <?php if (isset($_SESSION['loggedin'])) : ?>
                     <li class="icons dropdown">
                         <h5>
-                            <span class="text-dark">ชื่อผู้ใช้: </span>
-                            <span class="text-primary"><?php echo $_SESSION['username'] ?><?php echo $_SESSION['pName'] ?></span>
+                            <span class="text-dark">User: </span>
+                            <span class="text-primary">
+                                <?php echo $_SESSION['username'] ?>&nbsp;<?php echo $_SESSION['pName'] ?>
+                            </span>
                         </h5>
                     </li>
                     <li class="icons dropdown">
-                        <a href="/login.php" class="btn btn-rounded btn-primary text-white px-3 py-2">จัดการคำสั่งแต่งตั้ง</a>
+                        <a href="/login.php" class="btn btn-rounded btn-primary text-white px-3 py-2">Manage Documents</a>
                     </li>
                     <li class="icons dropdown">
-                        <a href="/logout.php" class="btn btn-rounded btn-danger text-white px-3 py-2">ออกจากระบบ</a>
+                        <a href="/logout.php" class="btn btn-rounded btn-danger text-white px-3 py-2">Logout</a>
                     </li>
                 <?php else : ?>
                     <li class="icons dropdown">
-                        <a href="/login.php" class="btn btn-rounded btn-primary text-white px-3 py-2">เข้าสู่ระบบ</a>
+                        <a href="/login.php" class="btn btn-rounded btn-primary text-white px-3 py-2">
+                            <i class="fa fa-sign-in mr-1 text-white" aria-hidden="true"></i> Login
+                        </a>
                     </li>
                 <?php endif; ?>
             </ul>
